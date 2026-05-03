@@ -256,6 +256,38 @@ router.put('/:organizacionId', ValidateJoi(Schemas.organizacion.update), control
 
 /**
  * @openapi
+ * /organizaciones/tareas/estado/{tareaId}:
+ *   patch:
+ *     summary: Actualiza el estado de una tarea (Kanban move)
+ *     tags: [Organizaciones]
+ *     parameters:
+ *       - in: path
+ *         name: tareaId
+ *         required: true
+ *         schema:
+ *           type: string
+ *         description: ObjectId de la tarea a mover
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *     properties:
+ *       estado:
+ *         type: string
+ *         enum: ["To do", "In progress", "Done"]
+ *         example: "In progress"
+ *     responses:
+ *       200:
+ *         description: Estado actualizado correctamente
+ *       404:
+ *         description: Tarea no encontrada
+ */
+router.patch('/tareas/estado/:tareaId', tareaController.updateEstado);
+
+/**
+ * @openapi
  * /organizaciones/{organizacionId}:
  *   delete:
  *     summary: Elimina una organización por ID

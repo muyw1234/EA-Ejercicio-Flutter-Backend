@@ -19,4 +19,16 @@ const readByOrganizacion = async (req: Request, res: Response, next: NextFunctio
     }
 };
 
-export default { createByOrganizacion, readByOrganizacion };
+const updateEstado = async (req: Request, res: Response, next: NextFunction) => {
+    try {
+        const { tareaId } = req.params;
+        const { estado } = req.body;
+        const updatedTarea = await TareaService.updateEstadoTarea(tareaId, estado);
+
+        return updatedTarea ? res.status(200).json(updatedTarea) : res.status(404).json({ message: 'Tarea no encontrada' });
+    } catch (error) {
+        return res.status(500).json({ error });
+    }
+};
+
+export default { createByOrganizacion, readByOrganizacion, updateEstado };
