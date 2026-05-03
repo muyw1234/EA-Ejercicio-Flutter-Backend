@@ -2,6 +2,8 @@
 
 API REST construida con **Node.js**, **Express**, **TypeScript** y **Mongoose** que gestiona dos entidades principales: `Organizacion` y `Usuario`.
 
+# Uso de la IA
+En el backend no se ha usado la IA.
 ---
 
 ## Tecnologías
